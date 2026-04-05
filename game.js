@@ -1,6 +1,6 @@
 const DEBUG = {
   infiniteHealth: false,
-  startAt: "ending", // "start" | 1 | 2 | 3 | "1" | "2" | "3" | "level1" | "level2" | "level3" | "ending"
+  startAt: "start", // "start" | 1 | 2 | 3 | "1" | "2" | "3" | "level1" | "level2" | "level3" | "ending"
 };
 
 const IMAGE_ASSETS = {
