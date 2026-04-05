@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lukas Easter's Adventure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="home-screen" id="homeScreen">
+      <img
+        id="homeImage"
+        class="home-image"
+        src="images/home.png"
+        alt="Portada de Lukas Easter's Adventure"
+      />
+      <button class="enter-button" id="startButton" type="button">
+        Presione Enter para comenzar la aventura
+      </button>
+    </section>
+
+    <main class="shell hidden" id="gameShell">
+      <section class="hud-panel">
+        <div>
+          <p class="eyebrow">Aventura de Pascua</p>
+          <h1>Lukas Easter's Adventure</h1>
+          <p id="subtitle">
+            Recorre tres desafíos, encuentra los huevos y vence al guardián final.
+          </p>
+        </div>
+        <div class="hud-grid">
+          <div class="hud-card">
+            <span>Nivel</span>
+            <strong id="levelLabel">Inicio</strong>
+          </div>
+          <div class="hud-card">
+            <span>Huevitos</span>
+            <strong id="eggLabel">0 / 5</strong>
+          </div>
+          <div class="hud-card">
+            <span>Vida</span>
+            <strong id="healthLabel">3</strong>
+          </div>
+        </div>
+        <div class="controls">
+          <span>Mover: WASD o flechas</span>
+          <span>Saltar: W, flecha arriba o espacio en niveles 2 y 3</span>
+          <span>Comenzar o reiniciar: Enter</span>
+          <span>Pausa: P</span>
+        </div>
+      </section>
+
+      <section class="game-panel">
+        <canvas id="game" width="960" height="540" aria-label="Juego de Lukas"></canvas>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
