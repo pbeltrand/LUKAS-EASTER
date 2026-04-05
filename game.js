@@ -6,9 +6,9 @@ const DEBUG = {
 const IMAGE_ASSETS = {
   home: "images/home.png",
   ending: "images/ending.png",
-  level1Intro: "images/home.png",
-  level2Intro: "images/ending.png",
-  level3Intro: "images/ending.png",
+  level1Intro: "images/lvl1.png",
+  level2Intro: "images/lvl2.png",
+  level3Intro: "images/lvl3.png",
 };
 
 const AUDIO_ASSETS = {
@@ -148,9 +148,14 @@ const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
 const GRAVITY = 0.52;
 const PLAYER_LIVES = 5;
+const TARGET_FPS = 30;
+const FRAME_TIME = 1000 / TARGET_FPS;
+const MAX_FRAME_SKIP = FRAME_TIME * 5;
 const LEVEL3_BALL_COUNT = 2;
 const LEVEL3_BALL_INTERVAL = 75;
 const keys = new Set();
+let lastFrameTime = 0;
+let accumulatedTime = 0;
 const LEVEL_INTROS = {
   1: {
     title: GAME_TEXT.intros[1].title,
@@ -1699,8 +1704,25 @@ function wrapText(text, x, y, maxWidth, lineHeight) {
   if (line) ctx.fillText(line.trim(), x, y + offsetY);
 }
 
-function loop() {
-  updateGame();
+function loop(timestamp = 0) {
+  if (lastFrameTime === 0) {
+    lastFrameTime = timestamp;
+  }
+
+  let delta = timestamp - lastFrameTime;
+  lastFrameTime = timestamp;
+
+  if (delta > MAX_FRAME_SKIP) {
+    delta = MAX_FRAME_SKIP;
+  }
+
+  accumulatedTime += delta;
+
+  while (accumulatedTime >= FRAME_TIME) {
+    updateGame();
+    accumulatedTime -= FRAME_TIME;
+  }
+
   render();
   requestAnimationFrame(loop);
 }
